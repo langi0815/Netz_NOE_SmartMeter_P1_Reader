@@ -11,6 +11,7 @@ Dieses Skript entschlüsselt Telegramme (DLMS) von der P1 Schnittstelle eines Sa
 ## Installation:
 * Python libraries installieren (pip install -r requirements.txt)
 * Konfigurationsparameter im .env-File eintragen. Der KEY ist der Entschlüsselungskey, welcher von Netz-NÖ beantragt werden muss.
+* Falls das Skript nicht als root ausgeführt wird: Anlegen der Datei "/var/log/decrypter.log" (Setzen der Rechte auf die Datei nicht vergessen).
 
 Beispiel-Konfiguration:
 ```
