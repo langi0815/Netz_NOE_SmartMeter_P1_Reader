@@ -3,10 +3,10 @@
 https://www.netz-noe.at/Download-(1)/Smart-Meter/218_9_SmartMeter_Kundenschnittstelle_lektoriert_14.aspx
 
 Dieses Skript entschlüsselt Telegramme (DLMS) von der P1 Schnittstelle eines Sagemcom T210-D. Die Telegramme werden anschließend geparst und folgende Werte an einen MQTT-Broker gesendent:
-- kWh in: Bezogene Energie in kWh (Gesamtwert)
-- kWh out: Eingespeiste Energie in kWh (Gesamtwert)
-- Power in: Aktueller Verbrauch in Watt
-- Power out: Aktuelle Einspeisung in Watt
+- kWh_in: Bezogene Energie in kWh (Gesamtwert)
+- kWh_out: Eingespeiste Energie in kWh (Gesamtwert)
+- pwr_in: Aktueller Verbrauch in Watt
+- pwr_out: Aktuelle Einspeisung in Watt
 
 ## Installation:
 * Python libraries installieren (pip install -r requirements.txt)
