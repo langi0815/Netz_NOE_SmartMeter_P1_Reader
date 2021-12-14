@@ -88,7 +88,7 @@ Beispielconfig der Sensoren (Hassio):
     state_topic: /home/smartmeter/vals
     name: SmartMeter_power_in
     value_template: "{{value_json.pwr_in}}"
-    unit_of_measurement: "kWh"
+    unit_of_measurement: "W"
     last_reset_topic: '/home/smartmeter/vals'
     last_reset_value_template: '1970-01-01T00:00:00+00:00'
     device_class: energy
@@ -97,7 +97,7 @@ Beispielconfig der Sensoren (Hassio):
     state_topic: /home/smartmeter/vals
     name: SmartMeter_power_out
     value_template: "{{value_json.pwr_out}}"
-    unit_of_measurement: "kWh"
+    unit_of_measurement: "W"
     last_reset_topic: '/home/smartmeter/vals'
     last_reset_value_template: '1970-01-01T00:00:00+00:00'
     device_class: energy
