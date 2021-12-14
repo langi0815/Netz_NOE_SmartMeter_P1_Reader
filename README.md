@@ -10,7 +10,7 @@ Dieses Skript entschlüsselt Telegramme von der P1 Schnittstelle eines Sagemcom 
 
 ## Installation:
 * Python libraries installieren (pip install -r requirements.txt)
-* Konfigurationsparameter im .env-File eintragen. Der KEY ist Entschlüsselungskey, welcher von Netz-NÖ beantragt werden muss.
+* Konfigurationsparameter im .env-File eintragen. Der KEY ist der Entschlüsselungskey, welcher von Netz-NÖ beantragt werden muss.
 
 
 ## Verwendete Hardware:
