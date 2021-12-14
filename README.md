@@ -1,5 +1,7 @@
 # Netz-NÖ SmartMeter-P1-Reader
 
+https://www.netz-noe.at/Download-(1)/Smart-Meter/218_9_SmartMeter_Kundenschnittstelle_lektoriert_14.aspx
+
 Dieses Skript entschlüsselt Telegramme von der P1 Schnittstelle eines Sagemcom T210-D. Die Telegramme werden anschließend geparst und folgende Werte an einen MQTT-Broker gesendent:
 - kWh in: Bezogene Energie in kWh (Gesamtwert)
 - kWh out: Eingespeiste Energie in kWh (Gesamtwert)
@@ -10,7 +12,6 @@ Dieses Skript entschlüsselt Telegramme von der P1 Schnittstelle eines Sagemcom 
 * Python libraries installieren (pip install -r requirements.txt)
 * Konfigurationsparameter im .env-File eintragen. Der KEY ist Entschlüsselungskey, welcher von Netz-NÖ beantragt werden muss.
 
-https://www.netz-noe.at/Download-(1)/Smart-Meter/218_9_SmartMeter_Kundenschnittstelle_lektoriert_14.aspx
 
 ## Verwendete Hardware:
 * BELTI USB-zu-MBUS-Slave-Modul (von Amazon)
