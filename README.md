@@ -10,6 +10,8 @@ Dieses Skript entschlüsselt Telegramme von der P1 Schnittstelle eines Sagemcom 
 * Python libraries installieren (pip install -r requirements.txt)
 * Konfigurationsparameter im .env-File eintragen. Der KEY ist Entschlüsselungskey, welcher von Netz-NÖ beantragt werden muss.
 
+https://www.netz-noe.at/Download-(1)/Smart-Meter/218_9_SmartMeter_Kundenschnittstelle_lektoriert_14.aspx
+
 ## Verwendete Hardware:
 * BELTI USB-zu-MBUS-Slave-Modul (von Amazon)
 * RJ12 Kabel
