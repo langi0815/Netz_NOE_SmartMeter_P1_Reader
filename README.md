@@ -1,4 +1,4 @@
-# Netz_NOE_SmartMeter_P1_Reader
+# Netz-NÖ SmartMeter-P1-Reader
 
 Dieses Skript entschlüsselt Telegramme von der P1 Schnittstelle eines Sagemcom T210-D. Die Telegramme werden anschließend geparst und folgende Werte an einen MQTT-Broker gesendent:
 - kWh in: Bezogene Energie in kWh (Gesamtwert)
