@@ -8,7 +8,7 @@ Dieses Skript entschlüsselt Telegramme von der P1 Schnittstelle eines Sagemcom 
 
 ## Installation:
 * Python libraries installieren (pip install -r requirements.txt)
-* Konfigurationsparameter im .env-File eintragen
+* Konfigurationsparameter im .env-File eintragen. Der KEY ist Entschlüsselungskey, welcher von Netz-NÖ beantragt werden muss.
 
 ## Verwendete Hardware:
 * BELTI USB-zu-MBUS-Slave-Modul (von Amazon)
