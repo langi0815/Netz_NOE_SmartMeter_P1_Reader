@@ -27,7 +27,8 @@ MQTT_TOPIC='/haus/smartmeter/vals'
 ```
 
 ## Run as a Service
-Folgende Datei anlegen: /etc/systemd/system/smart.service
+- Folgende Datei anlegen: /etc/systemd/system/smart.service
+- Den Parameter "ExecStart" auf die eigenen Pfade anpassen nicht vergessen!
  ```
  [Unit]
 Description=Smart Meter Decrypter
@@ -40,7 +41,6 @@ Group=pi
 TimeoutStartSec=0
 Restart=on-failure
 RestartSec=30s
-#ExecStartPre=
 ExecStart=/usr/bin/python3 /home/pi/scripts/decrypter.py
 [Install]
 WantedBy=multi-user.target
