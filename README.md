@@ -27,7 +27,7 @@ MQTT_TOPIC='/haus/smartmeter/vals'
 ```
 
 ## Run as a Service
-Folgende Datei in /etc/systemd/system/monitor-disk.service anlegen:
+Folgende Datei anlegen: /etc/systemd/system/smart.service
  ```
  [Unit]
 Description=Smart Meter Decrypter
