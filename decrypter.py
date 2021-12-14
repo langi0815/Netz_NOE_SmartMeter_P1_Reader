@@ -36,7 +36,7 @@ MQTT_PORT = int(os.getenv('MQTT_PORT'))
 MQTT_TOPIC = os.getenv('MQTT_TOPIC')
 
 # Logger und Translator initialisieren
-logging.basicConfig(filename='decrypter.log', encoding='utf-8', level=LOGLEVEL)
+logging.basicConfig(filename='/var/log/decrypter.log', encoding='utf-8', level=LOGLEVEL)
 t = GXDLMSTranslator(TranslatorOutputType.SIMPLE_XML)
 
 if __name__ == '__main__':
