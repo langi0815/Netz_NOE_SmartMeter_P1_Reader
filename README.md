@@ -26,6 +26,30 @@ MQTT_PORT=1883
 MQTT_TOPIC='/haus/smartmeter/vals'
 ```
 
+## Run as a Service
+Folgende Datei in /etc/systemd/system/monitor-disk.service anlegen:
+ ```
+ [Unit]
+Description=Smart Meter Decrypter
+Documentation=https://github.com/langi0815/Netz_NOE_SmartMeter_P1_Reader
+After=networking.service
+[Service]
+Type=simple
+User=pi
+Group=pi
+TimeoutStartSec=0
+Restart=on-failure
+RestartSec=30s
+#ExecStartPre=
+ExecStart=/usr/bin/python3 /home/pi/scripts/decrypter.py
+[Install]
+WantedBy=multi-user.target
+ ```
+ 
+ Danach folgende Befehle ausführen:
+ - sudo systemctl enable smart
+ - sudo systemctl start smart
+
 ## Verwendete Hardware:
 * BELTI USB-zu-MBUS-Slave-Modul (von Amazon)
 * RJ12 Kabel
