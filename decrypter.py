@@ -95,8 +95,8 @@ if __name__ == '__main__':
             # changeType() Data Types siehe:
             # Gurux.DLMS.Python/Gurux.DLMS.python/gurux_dlms/enums/DataType.py 
             timestamp = GXDLMSClient.changeType(timestamp, 0x19)
-            energy_total_pos = GXDLMSClient.changeType(energy_total_pos, 6) * 0.01
-            energy_total_neg = GXDLMSClient.changeType(energy_total_neg, 6) * 0.01
+            energy_total_pos = GXDLMSClient.changeType(energy_total_pos, 6) * 0.001
+            energy_total_neg = GXDLMSClient.changeType(energy_total_neg, 6) * 0.001
             power_pos = GXDLMSClient.changeType(power_pos, 6)
             power_neg = GXDLMSClient.changeType(power_neg, 6)
 
