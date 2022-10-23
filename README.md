@@ -23,11 +23,11 @@ MQTT_USER=mqttuser
 MQTT_PASS=mqttpassword
 MQTT_HOST='192.168.420.666'
 MQTT_PORT=1883
-MQTT_TOPIC='/haus/smartmeter/vals'
+MQTT_TOPIC='/home/smartmeter/vals'
 ```
 
 ## Run as a Service
-- Folgende Datei anlegen: /etc/systemd/system/smart.service
+- Folgende Datei anlegen: /etc/systemd/system/smartmeterd.service
 - Die Parameter "ExecStart", "User" und "Group" anpassen nicht vergessen!
  ```
  [Unit]
@@ -66,32 +66,66 @@ Für die Aufbereitung der Daten wird Hassio + Mossquito-Broker empfohlen
 
 Beispielconfig der Sensoren (Hassio):
 ```
- - platform: mqtt
-    state_topic: /home/smartmeter/vals
-    name: SmartMeter_kWh_in
-    value_template: "{{value_json.kWh_in}}"
+mqtt:
+  sensor:
+  - name: SmartMeter_kWh_in
+    state_topic: "/home/smartmeter/vals"
+    value_template: "{{ value_json.kWh_in | round(2) }}"
     unit_of_measurement: "kWh"
     device_class: energy
-    state_class: total
-  - platform: mqtt
-    state_topic: /home/smartmeter/vals
-    name: SmartMeter_kWh_out
-    value_template: "{{value_json.kWh_out}}"
+    state_class: total_increasing
+  - name: SmartMeter_kWh_out
+    state_topic: "/home/smartmeter/vals"
+    value_template: "{{ value_json.kWh_out | round(2) }}"
     unit_of_measurement: "kWh"
     device_class: energy
-    state_class: total
-  - platform: mqtt
-    state_topic: /home/smartmeter/vals
-    name: SmartMeter_power_in
-    value_template: "{{value_json.pwr_in}}"
+    state_class: total_increasing
+  - name: SmartMeter_power_in
+    state_topic: "/home/smartmeter/vals"
+    value_template: "{{ value_json.pwr_in | round(2) }}"
     unit_of_measurement: "W"
     device_class: power
     state_class: measurement
-  - platform: mqtt
-    state_topic: /home/smartmeter/vals
-    name: SmartMeter_power_out
-    value_template: "{{value_json.pwr_out}}"
+  - name: SmartMeter_power_out
+    state_topic: "/home/smartmeter/vals"
+    value_template: "{{ value_json.pwr_out | round(2) }}"
     unit_of_measurement: "W"
+    device_class: power
+    state_class: measurement
+  - name: SmartMeter_Voltage_L1
+    state_topic: "/home/smartmeter/vals"
+    value_template: "{{ value_json.v_l1 | round(2) }}"
+    unit_of_measurement: "V"
+    device_class: power
+    state_class: measurement
+  - name: SmartMeter_Voltage_L2
+    state_topic: "/home/smartmeter/vals"
+    value_template: "{{ value_json.v_l2 | round(2) }}"
+    unit_of_measurement: "V"
+    device_class: power
+    state_class: measurement
+  - name: SmartMeter_Voltage_L3
+    state_topic: "/home/smartmeter/vals"
+    value_template: "{{ value_json.v_l3 | round(2) }}"
+    unit_of_measurement: "V"
+    device_class: power
+    state_class: measurement
+  - name: SmartMeter_Current_L1
+    state_topic: "/home/smartmeter/vals"
+    value_template: "{{ value_json.c_l1 | round(2) }}"
+    unit_of_measurement: "A"
+    device_class: power
+    state_class: measurement
+  - name: SmartMeter_Current_L2
+    state_topic: "/home/smartmeter/vals"
+    value_template: "{{ value_json.c_l2 | round(2) }}"
+    unit_of_measurement: "A"
+    device_class: power
+    state_class: measurement
+  - name: SmartMeter_Current_L3
+    state_topic: "/home/smartmeter/vals"
+    value_template: "{{ value_json.c_l3 | round(2) }}"
+    unit_of_measurement: "A"
     device_class: power
     state_class: measurement
 ```
