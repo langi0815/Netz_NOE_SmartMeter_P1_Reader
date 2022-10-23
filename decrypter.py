@@ -11,12 +11,21 @@ Für die Verwendung des Skripts muss der Entschlüsselungs-Key
 vom smartmeter@netz-noe.at angefordert werden.
 '''
 
+'''
+V0.2, 2023-10-23
+
+Crypto Library umbenannt
+Werte für Spannung und Strom von L1,L2 und L3 hinzugefügt
+QoS und Retain Flag hinzugefügt und angepasst
+Konsolenausage optional für Debugging hinzugefügt
+'''
+
 import serial
 import binascii as ba
 import os
 import logging
 import paho.mqtt.publish as mp
-from Cryptodome.Cipher import AES
+from Crypto.Cipher import AES
 from gurux_dlms import *
 import xml.etree.ElementTree as ET
 from dotenv import load_dotenv
@@ -78,7 +87,6 @@ if __name__ == '__main__':
             # TO DO: Dynamischen XML Parser implementieren
             try:
                 raw_tree = t.pduToXml(decrypted)
-
                 tree = ET.ElementTree(ET.fromstring(raw_tree))
                 root = tree.getroot()
                 timestamp = root[2][0][0][0].attrib['Value']
@@ -86,6 +94,12 @@ if __name__ == '__main__':
                 energy_total_neg = root[2][0][0][5].attrib['Value'] 
                 power_pos = root[2][0][0][8].attrib['Value']
                 power_neg = root[2][0][0][11].attrib['Value']
+                voltage_l1 = root[2][0][0][14].attrib['Value']
+                voltage_l2 = root[2][0][0][17].attrib['Value']
+                voltage_l3 = root[2][0][0][20].attrib['Value']
+                current_l1 = root[2][0][0][23].attrib['Value']
+                current_l2 = root[2][0][0][26].attrib['Value']
+                current_l3 = root[2][0][0][29].attrib['Value']
 
             except Exception as e:
                 logging.warning(f'{datetime.now()}:PDU invalid: {e}')
@@ -99,6 +113,12 @@ if __name__ == '__main__':
             energy_total_neg = GXDLMSClient.changeType(energy_total_neg, 6) * 0.001
             power_pos = GXDLMSClient.changeType(power_pos, 6)
             power_neg = GXDLMSClient.changeType(power_neg, 6)
+            voltage_l1 = GXDLMSClient.changeType(voltage_l1, 0x12) * 0.1
+            voltage_l2 = GXDLMSClient.changeType(voltage_l2, 0x12) * 0.1
+            voltage_l3 = GXDLMSClient.changeType(voltage_l3, 0x12) * 0.1
+            current_l1 = GXDLMSClient.changeType(current_l1, 0x12) * 0.01
+            current_l2 = GXDLMSClient.changeType(current_l2, 0x12) * 0.01
+            current_l3 = GXDLMSClient.changeType(current_l3, 0x12) * 0.01
 
 
             #Sende Werte zum MQTT broker
@@ -114,11 +134,21 @@ if __name__ == '__main__':
                         "kWh_in": {energy_total_pos}, \
                         "kWh_out": {energy_total_neg}, \
                         "pwr_in": {power_pos}, \
-                        "pwr_out": {power_neg} \
+                        "pwr_out": {power_neg}, \
+                        "v_l1": {voltage_l1}, \
+                        "v_l2": {voltage_l2}, \
+                        "v_l3": {voltage_l3}, \
+                        "c_l1": {current_l1}, \
+                        "c_l2": {current_l2}, \
+                        "c_l3": {current_l3} \
                     }}',
-                    'qos': 2
+                    'qos': 2,
+                    'retain': False
                 }
             ]
+
+            # Für Debugging auskommentieren:
+            # print("msgs %s",msgs)
 
             # To DO: TLS konfigurieren !!!!
             try:
